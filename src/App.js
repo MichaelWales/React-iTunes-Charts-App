@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
+import ChartsWindow from './containers/ChartsWindow.js';
 
-function App() {
-  return (
-    
-  );
+class App extends Component {
+  render() {
+    return (
+      <ChartsWindow/>
+    );
+  }
 }
 
 export default App;
