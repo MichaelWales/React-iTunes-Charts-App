@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ChartsList from '../components/ChartsList.js';
 
 class ChartsWindow extends Component {
 
@@ -6,8 +7,8 @@ class ChartsWindow extends Component {
     super(props);
     this.state = {
       songs: [],
-      selectedSong: ""
     };
+
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -15,7 +16,7 @@ class ChartsWindow extends Component {
     const url = 'https://itunes.apple.com/gb/rss/topsongs/limit=20/json'
     fetch(url)
       .then(response => response.json())
-      .then(songs => this.setState({songs: songs}))
+      .then(res => this.setState({songs: res.feed.entry}))
       .catch(err => console.error);
   }
 
@@ -24,15 +25,11 @@ class ChartsWindow extends Component {
   }
 
   render() {
-
-    const selectedSong = this.state.songs.find(song => {
-      return song.entry[im:name]label === this.state.selectedSong
-    })
-
     return(
       <div>
-        <h2>UK iTunes Charts</h2>
-        
+        <h1 align="center">UK iTunes Charts</h1>
+        <br/>
+        <ChartsList songs={this.state.songs} />
       </div>
     )
   }
